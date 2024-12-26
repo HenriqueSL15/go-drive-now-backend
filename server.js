@@ -7,10 +7,13 @@ const bcrypt = require("bcryptjs");
 
 // Conexão com o MongoDB
 mongoose
-  .connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(
+    "mongodb+srv://myAtlasDBUser:135790@myatlasclusteredu.ufhaxua.mongodb.net/rentUsersDatabase?retryWrites=true&w=majority&appName=myAtlasClusterEDU",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  )
   .then(() => console.log("Conectado ao MongoDB!"))
   .catch((err) => console.error("Erro ao conectar ao MongoDB:", err));
 
