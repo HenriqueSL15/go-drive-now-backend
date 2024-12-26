@@ -16,7 +16,18 @@ mongoose
 
 // Criando o app Express
 const app = express();
-app.use(cors());
+const allowedOrigins = ["https://zippy-haupia-09ff37.netlify.app"];
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (allowedOrigins.includes(origin) || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error("Origin not allowed by CORS"));
+    }
+  },
+  credentials: true,
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // Modelo MongoDB dos usuários
