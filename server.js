@@ -3,7 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 
 // Conexão com o MongoDB
 mongoose
@@ -39,6 +39,10 @@ const MessageSchema = new mongoose.Schema({
   mensagem: String,
 });
 const Message = mongoose.model("messages", MessageSchema);
+
+app.get("/", (req, res) => {
+  return res.json("All Working");
+});
 
 // Rota para inserir dados
 app.post("/sendToDatabase", async (req, res) => {
@@ -84,6 +88,4 @@ app.post("/sendMessage", async (req, res) => {
 
 // Iniciando o servidor
 const PORT = process.env.PORT;
-app.listen(PORT, () =>
-  console.log(`Servidor rodando em http://localhost:${PORT}`)
-);
+module.exports = app;
